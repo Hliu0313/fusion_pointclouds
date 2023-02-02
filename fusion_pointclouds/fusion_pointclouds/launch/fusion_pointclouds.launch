@@ -1,0 +1,35 @@
+<launch>
+    <rosparam file="$(find fusion_pointclouds)/config/params.yaml" command="load" />
+    <node pkg="fusion_pointclouds" type="fusion_pointclouds" name="fusion_pointclouds" output="screen" />
+<!-- 
+arg的属性是default，所以我们还可以在指令中修改参数的值 
+注意这正是arg传参的优势所在，可以不修改launch文件的情况下修改参数值，通过指令形式)，执行命令： 
+#>  roslaunch fusion_pointclouds fusion_pointclouds.launch set_params:=true
+ -->
+<arg name="set_params" default="false" />
+<param name="set_params" value="$(arg set_params)" />
+<!-- if=value (optional) 如果value值为真，包含标签及其内容 unless=value (optional) 除非value为假 -->
+<group if="$(arg set_params)">
+    <!-- rqt_reconfigure  tf变换 -->
+        <node name="cpc1_to_ppc" pkg="fusion_pointclouds" type="set_params_tf"  output="screen" >
+                    <param name="name" value="cpc1_to_ppc" type="string"/>
+        </node>
+        <node name="cpc2_to_ppc" pkg="fusion_pointclouds" type="set_params_tf"  output="screen" >
+                    <param name="name" value="cpc2_to_ppc" type="string" />
+        </node>
+        <node name="cpc3_to_ppc" pkg="fusion_pointclouds" type="set_params_tf"  output="screen" >
+                    <param name="name" value="cpc3_to_ppc" type="string" />
+        </node>
+        <!-- rqt_reconfigure  滤波 -->
+        <node name="internal_bounds" pkg="fusion_pointclouds" type="set_params_bounds"  output="screen" >
+                    <param name="name" value="internal_bounds" type="string" />
+        </node>
+            <node name="external_bounds" pkg="fusion_pointclouds" type="set_params_bounds"  output="screen" >
+                    <param name="name" value="external_bounds" type="string" />
+        </node>
+
+        <node type="rviz" name="rviz" pkg="rviz" args="-d $(find fusion_pointclouds)/rviz/fusion_pointclouds.rviz" />
+          <!-- 加载参数，打开 rqt_reconfigure 工具，辅助调试参数 -->
+		<node type="rqt_reconfigure" name="rqt_reconfigure" pkg="rqt_reconfigure"/>
+</group>
+</launch>

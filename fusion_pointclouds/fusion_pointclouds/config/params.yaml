@@ -1,0 +1,66 @@
+  #参数加载对应 loadparams.h/loadparams.cpp，若修改params.yaml对应修改加载函数即可
+  
+fusion_lidar_num: 3                                                      #融合 lidar 点云数量 2/3/4
+topics:                                                                                 #订阅 lidar 点云话题
+  parent_pc_topic: "/front/rslidar_points"
+  child_pc_topic1: "/back/rslidar_points"
+  child_pc_topic2: "/left/rslidar_points"
+  child_pc_topic3: "/front/rslidar_points" 
+
+  fusion_pc_topic: "/rslidar_points"                       #融合后发布点云话题名称
+  fusion_pc_frame_id: "/front_rslidar"                 #融合后发布点云话题名称
+
+#注意
+#1.点云话题少于4个时，为了时间同步回调函数适应不同数量雷达，空位child_pc_topic可以填入parent_pc_topic
+#例如 需要融合"/front/rslidar_points" 与"/left/rslidar_points"点云数据
+#
+#fusion_lidar_num: 2
+#parent_pc_topic: "/front/rslidar_points"
+#child_pc_topic1: "/left/rslidar_points"
+#child_pc_topic2: "/front/rslidar_points" "
+#child_pc_topic3: "/front/rslidar_points" 
+
+#---->   如果只是融合点云数据，下方参数填 false 即可    <------- 
+set_params_tf:  true                                                     #是否对点云进行坐标变换 
+set_params_internal_bounds: true                       #是否对点云内边界 XYZ 滤除
+set_params_external_bounds: true                       #是否对点外内边界 XYZ 滤除
+set_dynamic_params: true                                        #是否开启动态调整，配合 rqt_reconfigure 动态调整坐标变化参数 ---> 解决标定参数不准确，实时微调
+
+cpc1_to_ppc:                                                                   #child_pc1_to_parent_pc，坐标变化信息传入节点，按需填写即可
+   x: 0.0   
+   y: 0.0
+   z: 0.0
+   roll: 0.0
+   pitch: 0.0
+   yaw: 0.0
+cpc2_to_ppc:
+   x: 0.0
+   y: 0.0
+   z: 0.0
+   roll: 0.0
+   pitch: 0.0
+   yaw: 0.0
+cpc3_to_ppc:
+   x: 0.0
+   y: 0.0
+   z: 0.0
+   roll: 0.0
+   pitch: 0.0
+   yaw: 0.0
+
+# Dynamic rqt_reconfigure default bounds
+internal_bounds :  #内边界
+  x_min: 0.0
+  x_max: 0.0
+  y_min: 0.0
+  y_max: 0.0
+  z_min: 0.0
+  z_max: 0.0
+
+external_bounds :  #外边界
+  x_min: -50
+  x_max: 50
+  y_min: -50
+  y_max: 50
+  z_min: -5
+  z_max: 5
