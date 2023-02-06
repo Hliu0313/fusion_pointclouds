@@ -29,11 +29,11 @@ Ubuntu 18.04 - ROS melodic desktop-full （自带pcl-1.8，无需安装）
 catkin_make
 source devel/setup.bash
 ```
-**只做点云tf变换、融合与滤波，不启动rqt_reconfigure**
+**① 只做点云tf变换、融合与滤波，不启动rqt_reconfigure**
 ```
 roslaunch fusion_pointclouds fusion_pointclouds.launch  
 ```
-**启动rqt_reconfigure**
+**② 启动rqt_reconfigure**
 ```
 roslaunch fusion_pointclouds fusion_pointclouds.launch  set_params:=true
 ```
