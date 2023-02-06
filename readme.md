@@ -4,9 +4,9 @@
 ### 1.1 应用场景
 |图1：为了保证激光雷达的360°环境覆盖，我们需要用到多传感器的拼接|图2：只单纯融合激光雷达的信息，多激光雷达会发生重叠，因此需要点云坐标变换|
 |--|--|
-|<img src="img/Needs_fusion.png" width="400px">|<img src="img/Needs_tf.png" width="400px">|
+|<img src="img/Needs_fusion.png" width="450px">|<img src="img/Needs_tf.png" width="400px">|
 |图3：激光雷达一定角度扫描车体本身，滤除车身周围干扰/遮挡点云，如图1白色区域，下图为pcl滤波效果图|图4：雷达外参标定不一定十分精确，滤波需要估计车体大小也需调整。结合rqt_reconfigure 模块实现在线动态参数微调|
-|![image](img/Need_filters.png)|![image](img/Needs_rqt_reconfigure.png)|
+|<img src="img/Need_filters.png" width="400px">|<img src="img/Needs_rqt_reconfigure.png" width="400px"|
 ### 1.2 项目内容
        *(1)点云的坐标变化；*
        *(2)通过PCL(Point Cloud Library)融合为一个点云话题；*
