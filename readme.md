@@ -3,6 +3,7 @@
 **fusion_pointclouds**  主要目的为Ubuntu环境下无人车多激光雷达标定之后， 将多个激光雷达点云话题/坐标系 通过PCL (Point Cloud Library)融合为 一个ros点云话题，以便于后期点云地面分割与地面处理等等。
 ### 1.1 应用场景
 |图1：为了保证激光雷达的360°环境覆盖，我们需要用到多传感器的拼接|图2：只单纯融合激光雷达的信息，多激光雷达会发生重叠，因此需要点云坐标变换|
+|--|--|
 |![image](img/Needs_fusion.png)|![image](img/Needs_tf.png)|
 |图3：激光雷达一定角度扫描车体本身，滤除车身周围干扰/遮挡点云，如图1白色区域，下图为pcl滤波效果图|图4：雷达外参标定不一定十分精确，滤波需要估计车体大小也需调整。结合rqt_reconfigure 模块实现在线动态参数微调|
 |![image](img/Need_filters.png)|![image](img/Needs_rqt_reconfigure.png)|
