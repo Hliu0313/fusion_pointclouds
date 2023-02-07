@@ -211,7 +211,7 @@ int main(int argc, char** argv)
 
     ros::NodeHandle nh;
     
-    FusionPcNode fusionPc(nh);
+    FusionPcNode fusionPc(nh);//括号法 -- 显示法FusionPcNode fusionPc = FusionPcNode(nh);
 
     return 0;
 }
