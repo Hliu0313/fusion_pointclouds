@@ -28,6 +28,20 @@ Ubuntu 18.04 - ROS melodic desktop-full （自带pcl-1.8，无需安装）
 git clone https://github.com/Hliu0313/fusion_pointclouds
 ```
 **2.根据实际情况修改 *fusion_pointclouds/config/params.yaml*文件**  
+```
+样例：详细可下载程序，查看。
+fusion_lidar_num: 3                                                      #融合 lidar 点云数量 2/3/4  
+topics:                                                                                 #订阅 lidar 点云话题  
+  parent_pc_topic: "/front/rslidar_points"  
+  child_pc_topic1: "/back/rslidar_points"  
+  child_pc_topic2: "/left/rslidar_points"  
+  child_pc_topic3: "/front/rslidar_points"   
+ 
+  fusion_pc_topic: "/rslidar_points"                       #融合后发布点云话题名称  
+  fusion_pc_frame_id: "/front_rslidar"                 #融合后发布点云话题名称  
+   
+#注意  
+```
 **3.返回工作空间目录，执行以下命令即可编译&运行**  
 ```
 catkin_make
