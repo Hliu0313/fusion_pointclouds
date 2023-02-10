@@ -22,21 +22,22 @@ Ubuntu 18.04 - ROS melodic desktop-full （自带pcl-1.8，无需安装）
 
 ## 3 编译 & 运行
 
-1.将 *fusion_pointclouds* 工程工作空间放入*src*文件夹内。
+
+**1.将 *fusion_pointclouds* 工程工作空间放入*src*文件夹内。**
 ```
 git clone https://github.com/Hliu0313/fusion_pointclouds
 ```
-2.根据实际情况修改 *fusion_pointclouds/config/params.yaml*
+**2.根据实际情况修改 *fusion_pointclouds/config/params.yaml* **
 ```
 catkin_make
 source devel/setup.bash
 ```
-3.返回工作空间目录，执行以下命令即可编译&运行
-  **① 只做点云tf变换、融合与滤波，不启动rqt_reconfigure**
+**3.返回工作空间目录，执行以下命令即可编译&运行**
+ ① 只做点云tf变换、融合与滤波，不启动rqt_reconfigure
 ```
 roslaunch fusion_pointclouds fusion_pointclouds.launch  
 ```
-  **② 启动rqt_reconfigure**
+  ② 启动rqt_reconfigure
 ```
 roslaunch fusion_pointclouds fusion_pointclouds.launch  set_params:=true
 ```
