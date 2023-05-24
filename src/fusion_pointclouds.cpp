@@ -178,9 +178,9 @@ void FusionPcNode::conditionFiter(const pcl::PointCloud<pcl::PointXYZI>::ConstPt
     pcl::ConditionOr<pcl::PointXYZI> ());
  // 设置Z轴的限制范围 
  range_cond->addComparison (pcl::FieldComparison<pcl::PointXYZI>::ConstPtr (new
-  pcl::FieldComparison<pcl::PointXYZI> ("z", pcl::ComparisonOps::GT,params_bounds.z_min )));
+  pcl::FieldComparison<pcl::PointXYZI> ("z", pcl::ComparisonOps::GT,params_bounds.z_max )));
   range_cond->addComparison (pcl::FieldComparison<pcl::PointXYZI>::ConstPtr (new
-    pcl::FieldComparison<pcl::PointXYZI> ("z", pcl::ComparisonOps::LT,params_bounds.z_max)));
+    pcl::FieldComparison<pcl::PointXYZI> ("z", pcl::ComparisonOps::LT,params_bounds.z_min)));
 //   // 设置Y轴的限制范围 
   range_cond->addComparison (pcl::FieldComparison<pcl::PointXYZI>::ConstPtr (new
     pcl::FieldComparison<pcl::PointXYZI> ("y", pcl::ComparisonOps::GT,params_bounds.y_max)));
